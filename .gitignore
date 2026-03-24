@@ -1,0 +1,18 @@
+# Agent-generated reports, summaries, manifests, and temp files
+agent/
+.claude/
+
+# Previous versions
+skills/skillxiv-v0.0.0-claude-opus-4.6/
+skills/skillxiv-v0.0.1-claude-opus-4.6/
+# Build artifacts
+frontend/dist/
+frontend/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local

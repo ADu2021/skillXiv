@@ -1,0 +1,67 @@
+---
+name: justrl-simple-recipe
+title: "JustRL: Scaling Small Language Models with Simple Reinforcement Learning Recipe"
+version: 0.0.2
+engine: skillxiv-v0.0.2-claude-opus-4.6
+license: MIT
+url: https://arxiv.org/abs/2512.16649
+keywords: [reinforcement-learning, small-models, mathematical-reasoning, simple-training, efficiency]
+description: "Demonstrate that simple single-stage RL with fixed hyperparameters matches complex multi-stage approaches for training small LLMs on mathematical reasoning. Use basic setup: GRPO algorithm, rule-based verification, 16K token context, standard training data without difficulty filtering. Train two 1.5B models to competitive performance using 2× less compute than sophisticated approaches."
+---
+
+## Skill Summary
+
+JustRL challenges prevailing assumptions about LLM training complexity. The paper demonstrates that simple, single-stage reinforcement learning with fixed hyperparameters can match or exceed complex multi-stage approaches for training small language models on mathematical reasoning. The minimal recipe uses GRPO algorithm with rule-based verification, 16K token context limit, and standard training data without difficulty filtering. Training dynamics exhibit smooth monotonic improvement without collapses or plateaus typically motivating multi-stage interventions. Two 1.5B models (DeepSeek and Nemotron backbones) achieve competitive performance (54.9% and 64.3% average accuracy respectively) while using 2× less compute.
+
+## When To Use
+
+- Training small language models (1-3B) on mathematical reasoning
+- Projects skeptical of complex multi-stage RL schemes
+- Scenarios where simple approaches reduce infrastructure complexity
+- Research questioning necessity of sophisticated training techniques
+
+## When NOT To Use
+
+- Large-scale model training (findings may not scale beyond 1.5B)
+- Tasks benefiting specifically from curriculum learning or multi-stage approaches
+- Scenarios where simple methods genuinely underperform
+- Domains requiring complex RL dynamics beyond basic GRPO
+
+## Core Technique
+
+The recipe intentionally minimizes complexity:
+
+**1. Single-Stage Training**
+No progressive context lengthening, no curriculum switching, no dynamic adjustments. Apply same training approach uniformly throughout.
+
+**2. Fixed Hyperparameters**
+Use identical hyperparameters across all models and training stages. No adaptive scheduling or dynamic adjustments based on training progress.
+
+**3. Standard Training Data**
+Use basic training data without difficulty filtering, dynamic sampling, or curriculum-based selection. Standard dataset for baseline performance.
+
+**4. Basic Algorithm**
+- GRPO: standard group policy optimization
+- Rule-based verification: simple correctness checking
+- 16K token context: moderate but fixed context window
+
+## Key Insight
+
+As authors note, the approach achieves results "while using 2× less compute than sophisticated approaches." Training dynamics exhibit smooth, monotonic improvement without collapses or plateaus typically motivating multi-stage interventions. This suggests that "adequate scale with simple methods" may suffice where the field has added unnecessary complexity.
+
+## Results
+
+- DeepSeek 1.5B: 54.9% average accuracy across nine benchmarks
+- Nemotron 1.5B: 64.3% average accuracy
+- Smooth training without catastrophic forgetting
+- 2× compute efficiency vs. multi-stage approaches
+
+## Implementation Notes
+
+Implement basic GRPO algorithm with fixed hyperparameters. Use rule-based verification for mathematical correctness. Train with standard data without curriculum or difficulty filtering. Monitor for smooth improvement trajectory. Validate that simple approaches work before adding complexity.
+
+## References
+
+- Original paper: JustRL (Dec 2025)
+- Group Policy Optimization (GRPO)
+- Language model training recipes
