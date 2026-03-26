@@ -130,6 +130,7 @@ engine: skillxiv-v0.0.2-claude-opus-4.6
 license: MIT
 url: [verified arxiv link to source paper]
 keywords: [evaluation, infrastructure, metric-selection, annotation-protocol, or data-curation]
+tags: [select 1-3 broad area tags from tags.json registry]
 description: Build evaluation infrastructure for {domain} by replicating {benchmark/dataset} methodology. Includes {annotation protocol OR task definition}, {quality control OR metric selection}, enabling {outcome} for {use case}.
 ---
 ```

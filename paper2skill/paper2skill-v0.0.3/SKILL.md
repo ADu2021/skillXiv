@@ -15,6 +15,7 @@ A single paper can produce **multiple skills** if it genuinely spans categories 
 Paper (arXiv link)
   → Step 1: Categorize (which of 11 types?)
   → Step 2: For each category, extract with the specialized pipeline
+  → Step 3: Tag each skill (assign 1-3 broad-area tags from the registry)
   → Output: 1+ skills, each tailored to the knowledge type
 ```
 
@@ -69,6 +70,27 @@ Skip extraction for a category if:
 - The paper only superficially touches the secondary category
 - Extracting would produce a near-duplicate of the primary skill
 
+## Step 3: Tag Each Skill
+
+After extraction, assign **1-3 broad-area tags** to each skill from the tag registry at `tags.json` in the project root. Tags categorize skills by research area for browsing and filtering.
+
+### Tag Registry
+
+The registry contains ~20 broad research-area tags such as: Reinforcement Learning, Large Language Models, Computer Vision, Natural Language Processing, Multimodal Learning, Generative Models, Agents, Robotics, Optimization, Inference Efficiency, Representation Learning, Graph Learning, AI Safety, Evaluation, ML Systems, Speech, Information Retrieval, Time Series, Recommender Systems, Science.
+
+### Tagging Rules
+
+1. **Select 1-3 tags** from the registry. Every skill must get at least one tag.
+2. **Always use existing tags.** The registry already covers most ML/AI research areas.
+3. If a skill spans multiple areas, select 2-3 existing tags rather than inventing a new narrow one.
+4. **Match to the broadest applicable tag.** Examples:
+   - A paper about PPO clipping → `Reinforcement Learning` (not "Policy Optimization")
+   - A paper about LoRA → `Large Language Models` (not "Parameter Efficient Fine-tuning")
+   - A paper about calibration → `AI Safety` or the most relevant area (not "Calibration")
+   - A paper about video generation → `Generative Models`, `Computer Vision`
+5. **New tags are rare.** Only propose a new tag if no existing one fits at all AND the new tag represents a broad research area that could apply to 50+ papers (e.g., "Audio Processing"). Never create tags for techniques, specific problems, or niche subtopics. Ask yourself: "Would a major ML conference have a track for this?" If not, pick the closest existing tag.
+6. Format as an inline YAML list: `tags: [Computer Vision, Generative Models]`. Place the `tags` field immediately after `keywords` in the frontmatter.
+
 ## Output Skill Specification
 
 All generated skills follow this frontmatter format:
@@ -82,6 +104,7 @@ engine: skillxiv-v0.0.3-claude-opus-4.6
 license: MIT
 url: "https://arxiv.org/abs/XXXX.XXXXX"
 keywords: [Keyword One, Keyword Two, Keyword Three]
+tags: [Broad Area Tag One, Broad Area Tag Two]
 description: "Outcome-focused description under 1024 chars, plain text only, no angle brackets"
 category: "Category Name"
 ---
@@ -102,6 +125,10 @@ The `url` must be a verified, working arXiv link. Construct as `https://arxiv.or
 ### Keywords
 
 5-10 keywords in Title Case, inline YAML list: `keywords: [Model Architecture, Mamba, State Space Models]`. Never use YAML block list syntax.
+
+### Tags
+
+1-3 broad research-area tags from the tag registry (`tags.json`), inline YAML list: `tags: [Large Language Models, Inference Efficiency]`. See **Step 3** above for selection rules. The `tags` line goes immediately after `keywords` in the frontmatter.
 
 ### Code Handling
 
@@ -138,6 +165,7 @@ Run these checks on every generated skill:
 3. **Trigger test** — does the description trigger for 5+ phrasings of the use case?
 4. **Depth check** — does it go beyond a 2-sentence summary?
 5. **Category alignment** — does the extracted skill actually reflect the category's knowledge type? (A Category 4 paper should produce a checklist, not an architecture guide)
+6. **Tag check** — are the tags broad research areas from the registry? No technique names, no niche subtopics.
 
 ## Reference Files
 

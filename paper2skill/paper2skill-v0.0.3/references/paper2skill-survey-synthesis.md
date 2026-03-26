@@ -199,6 +199,7 @@ engine: skillxiv-v0.0.2-claude-opus-4.6
 license: MIT
 url: [verified arxiv link to source paper]
 keywords: [taxonomy, survey, research-directions, field-navigation, or domain-specific terms]
+tags: [select 1-3 broad area tags from tags.json registry]
 description: Navigate {field/topic} by understanding {taxonomy/position/roadmap}. Extracts {taxonomy structure OR decision tree OR open problems}, enabling practitioners to {choose approaches OR understand landscape OR guide next research}. Use when selecting methods in {field}, understanding how {domain} has evolved, identifying unresolved challenges, or planning research directions.
 ---
 ```

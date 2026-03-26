@@ -190,6 +190,7 @@ engine: skillxiv-v0.0.2-claude-opus-4.6
 license: MIT
 url: [verified arxiv link to source paper]
 keywords: [scaling-laws, resource-optimization, efficiency, compute-optimal, or domain-specific technique name]
+tags: [select 1-3 broad area tags from tags.json registry]
 description: Optimize {resource} by understanding {empirical law or efficiency principle}. Extracts {scaling law OR efficiency tradeoff}, providing specific performance numbers at known {costs OR hardware constraints}. Enables practitioners to {allocate compute optimally OR achieve X speedup with Y accuracy loss OR train within a budget}. Use when planning training budgets, choosing model sizes for inference, understanding compute-performance tradeoffs, or maximizing efficiency within resource constraints.
 ---
 ```

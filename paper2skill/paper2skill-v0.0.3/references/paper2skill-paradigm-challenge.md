@@ -98,6 +98,7 @@ engine: skillxiv-v0.0.2-claude-opus-4.6
 license: MIT
 url: [verified arxiv link to source paper]
 keywords: [paradigm-challenge, falsified-belief, revised-principle, {domain}, {old-assumption}]
+tags: [select 1-3 broad area tags from tags.json registry]
 description: Overturn the assumption that {prior belief} by understanding {revised principle}. Includes the falsifying experiment from {paper source}, implications for {practice area}, enabling practitioners to {outcome} when {prior approach} fails.
 ---
 ```

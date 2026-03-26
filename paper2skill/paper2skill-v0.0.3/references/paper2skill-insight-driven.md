@@ -161,6 +161,7 @@ engine: skillxiv-v0.0.2-claude-opus-4.6
 license: MIT
 url: [arXiv HTML link]
 keywords: [problem-domain, insight-type, key-observation, outcome, breakthrough]
+tags: [select 1-3 broad area tags from tags.json registry]
 description: |
   A single insight reframes [hard problem] as [simple problem]: [the insight in one sentence].
   Trigger: When facing [problem type], apply this insight to enable [outcome] without [previous complexity].

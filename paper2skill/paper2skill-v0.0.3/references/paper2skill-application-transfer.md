@@ -110,6 +110,7 @@ engine: skillxiv-v0.0.2-claude-opus-4.6
 license: MIT
 url: [verified arxiv link to source paper]
 keywords: [domain, method, constraint1, constraint2, outcome]
+tags: [select 1-3 broad area tags from tags.json registry]
 description: Apply {Method} to {Domain} by bridging the gap between {original context} and {domain requirements}. Focuses on {key adaptation}, enabling {outcome} when solving {problem class}.
 ---
 ```

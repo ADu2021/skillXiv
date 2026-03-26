@@ -116,6 +116,7 @@ engine: skillxiv-v0.0.2-claude-opus-4.6
 license: MIT
 url: [arXiv HTML link]
 keywords: [domain, trick-type, impact-level, conditions-tag, community-need]
+tags: [select 1-3 broad area tags from tags.json registry]
 description: |
   [Outcome-focused]: Practitioners can [achieve X] by [applying Y ranked tricks] under [conditions Z].
   Trigger: When [specific implementation challenge], reference this ranked checklist.

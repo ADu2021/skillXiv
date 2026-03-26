@@ -147,6 +147,7 @@ engine: skillxiv-v0.0.2-claude-opus-4.6
 license: MIT
 url: [arXiv HTML link]
 keywords: [component-type, old-name, new-name, impact-metric, condition-tag]
+tags: [select 1-3 broad area tags from tags.json registry]
 description: |
   Swap [old component] with [new component] to gain [X% improvement] on [metric]. Works best for [conditions].
   Trigger: When optimizing [model family] on [task type] and want to improve [metric], test this component swap.
