@@ -126,8 +126,18 @@ def main():
     with open(OUTPUT_INDEX, 'w') as f:
         json.dump(index, f)
 
+    # Output sources metadata for frontend source filter
+    sources_meta = [
+        {'id': s['id'], 'label': s['label']}
+        for s in sources
+    ]
+    sources_meta_path = os.path.join(SCRIPT_DIR, "public/sources-meta.json")
+    with open(sources_meta_path, 'w') as f:
+        json.dump(sources_meta, f)
+
     print(f"\nTotal: {len(index)} skills indexed")
     print(f"Index size: {os.path.getsize(OUTPUT_INDEX) / 1024:.1f} KB")
+    print(f"Sources metadata: {len(sources_meta)} sources written")
 
 if __name__ == '__main__':
     main()

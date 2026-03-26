@@ -508,8 +508,70 @@ a:hover {
   color: var(--gray-500);
 }
 .browse .search-bar {
-  margin: 0 0 32px 0;
+  margin: 0 0 20px 0;
   max-width: 100%;
+}
+
+/* ===== Source Filter ===== */
+.source-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.source-filter-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.source-filter-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 100px;
+  background: var(--white);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.source-chip:hover {
+  border-color: var(--indigo-300);
+  color: var(--indigo-600);
+}
+.source-chip-active {
+  background: var(--indigo-50);
+  border-color: var(--indigo-400);
+  color: var(--indigo-700);
+  font-weight: 600;
+}
+.source-chip-count {
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--gray-100);
+  color: var(--gray-500);
+  padding: 1px 7px;
+  border-radius: 100px;
+  min-width: 20px;
+  text-align: center;
+}
+.source-chip-active .source-chip-count {
+  background: var(--indigo-100);
+  color: var(--indigo-600);
 }
 .no-results {
   text-align: center;
