@@ -1,0 +1,53 @@
+{
+  "skill_name": "paper-categorizer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Categorize this paper:\n\nTitle: Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift\n\nAbstract: Training Deep Neural Networks is complicated by the fact that the distribution of each layer's inputs changes during training, as the parameters of the previous layers change. This slows down the training by requiring lower learning rates and careful parameter initialization, and makes it notoriously hard to train models with saturating nonlinearities. We refer to this phenomenon as internal covariate shift, and address the problem by normalizing layer inputs. Our method draws its strength from making normalization a part of the model architecture and performing the normalization for each training mini-batch. Batch Normalization allows us to use much higher learning rates and be less careful about initialization. It also acts as a regularizer, in some cases eliminating the need for Dropout. Applied to a state-of-the-art image classification model, Batch Normalization achieves the same accuracy with 14 times fewer training steps, and beats the original model by a significant margin.",
+      "expected_output": "Primary: Category 5 (Component Innovation). BatchNorm is a normalization component swap.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Categorize this paper:\n\nTitle: ImageNet: A Large-Scale Hierarchical Image Database\n\nAbstract: The explosion of image data on the Internet has the potential to foster more sophisticated and robust models and algorithms to index, retrieve, organize and interact with images and multimedia data. But exactly how such data can be harnessed and organized remains a critical problem. We introduce here a new database called ImageNet, a large-scale ontology of images built upon the backbone of the WordNet structure. ImageNet aims to populate the majority of the 80,000 synsets of WordNet with an average of 500-1000 clean and full resolution images. This will result in tens of millions of annotated images organized by the semantic hierarchy of WordNet. This paper offers a detailed analysis of ImageNet in its current state: 12 subtrees with 5247 synsets and 3.2 million images in total.",
+      "expected_output": "Primary: Category 2 (Evaluation Infrastructure), sub_type: dataset paper.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Categorize this paper:\n\nTitle: PyTorch: An Imperative Style, High-Performance Deep Learning Library\n\nAbstract: Deep learning frameworks have often focused on either usability or speed, but not both. PyTorch, a machine learning library for Python, is an open source deep learning platform that provides a seamless path from research prototyping to production deployment with GPU support, distributed training, and an ecosystem of tools and libraries. It provides automatic differentiation and dynamic computation graphs that facilitate rapid experimentation. PyTorch has been adopted at scale for both research and production by major organizations including Facebook AI Research, and has a growing community of developers and users.",
+      "expected_output": "Primary: Category 7 (Research Infrastructure), sub_type: framework paper.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Categorize this paper:\n\nTitle: AlphaFold: Highly accurate protein structure prediction with deep learning\n\nAbstract: Proteins are essential to life, and understanding their structure is fundamental to understanding their function. We present AlphaFold, a novel machine learning approach that achieves accuracy competitive with experiment in the Critical Assessment of protein Structure Prediction (CASP14). Our system achieves a median GDT score of 92.4 across all CASP14 targets, significantly outperforming existing methods. AlphaFold demonstrates that machine learning can solve a grand challenge in biology that has persisted for over 50 years. The implications for drug discovery, disease understanding, and biological research are profound.",
+      "expected_output": "Primary: Category 1 (Application Transfer), sub_type: interdisciplinary crossing.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Categorize this paper:\n\nTitle: Network Dissection: Quantifying Interpretability of Deep Visual Representations\n\nAbstract: We propose a general framework called Network Dissection for quantifying the interpretability of latent representations of CNNs by evaluating the alignment between individual hidden units and a set of semantic concepts. Given any CNN model, the proposed method draws on a broad data set of visual concepts to score the semantics of hidden units at each intermediate convolutional layer. The units with semantics are given labels across a range of objects, parts, scenes, textures, materials, and colors. We use the proposed method to test the hypothesis that interpretability of units is equivalent to random linear combinations of units.",
+      "expected_output": "Primary: Category 9 (Mechanistic Analysis). Exploratory, not adversarial.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Categorize this paper:\n\nTitle: Understanding Deep Learning Requires Rethinking Generalization\n\nAbstract: Despite their massive size, successful deep artificial neural networks can exhibit a remarkably small difference between training and test performance. Conventional wisdom attributes small generalization error either to properties of the model family, or to the regularization techniques used during training. Through extensive systematic experiments, we demonstrate how these traditional approaches fail to explain why large neural networks generalize well in practice. Specifically, our experiments establish that state-of-the-art convolutional networks for image classification trained with stochastic gradient descent can easily fit a random labeling of the training data. This phenomenon is qualitatively unaffected by explicit regularization, and occurs even if we replace the true images by completely unstructured random noise.",
+      "expected_output": "Primary: Category 3 (Paradigm Challenge). Adversarial — proving conventional wisdom wrong.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Categorize this paper:\n\nTitle: A Survey of Large Language Models\n\nAbstract: Ever since the Turing Test was proposed in the 1950s, humans have explored the mastery of language intelligence by machine. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable AI algorithms for understanding and mastering a language. As a major approach, language modeling has been widely studied for language understanding and generation in the past two decades, evolving from statistical language models to neural language models. Recently, pre-trained language models (PLMs) have been proposed by pre-training Transformer models over large-scale corpora, showing strong capabilities in solving various NLP tasks. Since the researchers have found that model scaling can lead to performance improvement, they further study the scaling effect by increasing the model size to an even larger size. Interestingly, when the parameter scale exceeds a certain level, these enlarged language models not only achieve a significant performance improvement but also show some special abilities that are not present in small-scale language models. To discriminate the difference in parameter scale, the research community has coined the term large language models (LLM) for these large-sized PLMs.",
+      "expected_output": "Primary: Category 10 (Survey & Synthesis), sub_type: technical survey.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Categorize this paper:\n\nTitle: Training Compute-Optimal Large Language Models\n\nAbstract: We investigate the optimal model size and number of tokens for training a transformer language model under a given compute budget. We find that current large language models are significantly undertrained, a finding that is in direct contradiction to the widely held belief that scaling model size is the primary driver of performance. Given a fixed compute budget, we derive scaling laws that determine the optimal allocation between model size and training data. We train a predicted compute-optimal model, Chinchilla, that uses the same compute budget as Gopher but with 70B parameters and 4x more data. Chinchilla uniformly and significantly outperforms Gopher (280B), GPT-3 (175B), Jurassic-1 (178B), and Megatron-Turing NLG (530B) on a large range of downstream evaluation tasks.",
+      "expected_output": "Primary: Category 11 (Scaling & Efficiency). Studies compute-optimal training and scaling laws.",
+      "files": []
+    }
+  ]
+}
