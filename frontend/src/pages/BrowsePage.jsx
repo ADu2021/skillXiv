@@ -2,16 +2,19 @@ import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 import SkillCard from '../components/SkillCard'
+import TagBar from '../components/TagBar'
 
 const PAGE_SIZE = 24
 
 export default function BrowsePage() {
   const [skills, setSkills] = useState([])
+  const [globalTags, setGlobalTags] = useState([])
   const [sourcesMeta, setSourcesMeta] = useState([])
   const [selectedSources, setSelectedSources] = useState(null) // null = all selected
   const [loading, setLoading] = useState(true)
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const query = searchParams.get('q') || ''
+  const activeTag = searchParams.get('tag') || ''
   const [page, setPage] = useState(1)
 
   useEffect(() => {
@@ -19,31 +22,33 @@ export default function BrowsePage() {
       fetch('./skills-index.json').then(r => r.json()),
       fetch('./sources-meta.json').then(r => r.json()).catch(() => [])
     ]).then(([skillsData, sourcesData]) => {
-      setSkills(skillsData)
+      // Support both old format (array) and new format ({ skills, globalTags })
+      if (Array.isArray(skillsData)) {
+        setSkills(skillsData)
+      } else {
+        setSkills(skillsData.skills || [])
+        setGlobalTags(skillsData.globalTags || [])
+      }
       setSourcesMeta(sourcesData)
-      // Default: all sources selected
       setSelectedSources(new Set(sourcesData.map(s => s.id)))
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
 
-  // Reset page when query or sources change
-  useEffect(() => { setPage(1) }, [query, selectedSources])
+  // Reset page when query, tag, or sources change
+  useEffect(() => { setPage(1) }, [query, activeTag, selectedSources])
 
   const toggleSource = (sourceId) => {
     setSelectedSources(prev => {
-      // If all are currently selected, narrow down to just the clicked one
       if (prev.size === sourcesMeta.length) {
         return new Set([sourceId])
       }
-      // If only one is selected, switch to the clicked one (or back to all if same)
       if (prev.size === 1) {
         if (prev.has(sourceId)) {
           return new Set(sourcesMeta.map(s => s.id))
         }
         return new Set([sourceId])
       }
-      // Multi-select: toggle individual sources, keep at least one
       const next = new Set(prev)
       if (next.has(sourceId)) {
         if (next.size > 1) next.delete(sourceId)
@@ -62,28 +67,44 @@ export default function BrowsePage() {
     selectedSources.size === sourcesMeta.length
 
   const filtered = useMemo(() => {
-    let result = skills
+    return skills.filter(s => {
+      // Source filter
+      const matchesSource = (() => {
+        if (!selectedSources || selectedSources.size === sourcesMeta.length) return true
+        return selectedSources.has(s.source)
+      })()
 
-    // Filter by selected sources
-    if (selectedSources && selectedSources.size < sourcesMeta.length) {
-      result = result.filter(s => selectedSources.has(s.source))
-    }
-
-    // Filter by search query
-    if (query) {
-      const q = query.toLowerCase()
-      const terms = q.split(/\s+/)
-      result = result.filter(s => {
+      // Text search: AND-logic across all terms
+      const matchesQuery = (() => {
+        if (!query) return true
+        const terms = query.toLowerCase().split(/\s+/)
         const text = `${s.name} ${s.description} ${s.paperTitle} ${s.keywords || ''}`.toLowerCase()
         return terms.every(t => text.includes(t))
-      })
-    }
+      })()
 
-    return result
-  }, [skills, query, selectedSources, sourcesMeta.length])
+      // Tag filter: skill must have the active tag
+      const matchesTag = (() => {
+        if (!activeTag) return true
+        if (!s.tags || !Array.isArray(s.tags)) return false
+        return s.tags.some(t => t.toLowerCase() === activeTag.toLowerCase())
+      })()
+
+      return matchesSource && matchesQuery && matchesTag
+    })
+  }, [skills, query, activeTag, selectedSources, sourcesMeta.length])
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
   const visible = filtered.slice(0, page * PAGE_SIZE)
+
+  const handleTagClick = (tagSlug) => {
+    const params = new URLSearchParams(searchParams)
+    if (tagSlug === activeTag) {
+      params.delete('tag')
+    } else {
+      params.set('tag', tagSlug)
+    }
+    setSearchParams(params)
+  }
 
   // Count skills per source for badges
   const sourceCounts = useMemo(() => {
@@ -94,16 +115,27 @@ export default function BrowsePage() {
     return counts
   }, [skills])
 
+  // Find the display name for the active tag
+  const activeTagName = activeTag
+    ? (globalTags.find(t => t.slug === activeTag)?.name || activeTag)
+    : ''
+
+  const resultSummary = (() => {
+    const parts = []
+    if (query) parts.push(`"${query}"`)
+    if (activeTagName) parts.push(activeTagName)
+    if (parts.length > 0) {
+      return `${filtered.length} result${filtered.length !== 1 ? 's' : ''} for ${parts.join(' in ')}`
+    }
+    return `${skills.length} skills available`
+  })()
+
   return (
     <div className="browse">
       <div className="section-inner">
         <div className="browse-header">
           <h1 className="browse-title">Browse Skills</h1>
-          <p className="browse-count">
-            {query
-              ? `${filtered.length} result${filtered.length !== 1 ? 's' : ''} for "${query}"`
-              : `${filtered.length} skills available`}
-          </p>
+          <p className="browse-count">{resultSummary}</p>
         </div>
         <SearchBar initialQuery={query} />
 
@@ -136,12 +168,21 @@ export default function BrowsePage() {
           </div>
         )}
 
+        {/* Tag filter */}
+        {globalTags.length > 0 && (
+          <TagBar
+            tags={globalTags}
+            activeTag={activeTag}
+            onTagClick={handleTagClick}
+          />
+        )}
+
         {loading ? (
           <div className="loading">Loading skills...</div>
         ) : filtered.length === 0 ? (
           <div className="no-results">
             <h3>No skills found</h3>
-            <p>Try adjusting your search terms or source filters.</p>
+            <p>Try adjusting your search terms or filters.</p>
           </div>
         ) : (
           <>

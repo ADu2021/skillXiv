@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "description": "Dynamic tag registry for SkillXiv. LLMs select from existing tags or propose new ones at the same level of abstraction (broad research area, not technique name).",
+  "tags": [
+    { "name": "Reinforcement Learning", "slug": "reinforcement-learning" },
+    { "name": "Large Language Models", "slug": "large-language-models" },
+    { "name": "Computer Vision", "slug": "computer-vision" },
+    { "name": "Natural Language Processing", "slug": "natural-language-processing" },
+    { "name": "Multimodal Learning", "slug": "multimodal-learning" },
+    { "name": "Generative Models", "slug": "generative-models" },
+    { "name": "Agents", "slug": "agents" },
+    { "name": "Robotics", "slug": "robotics" },
+    { "name": "Optimization", "slug": "optimization" },
+    { "name": "Inference Efficiency", "slug": "inference-efficiency" },
+    { "name": "Representation Learning", "slug": "representation-learning" },
+    { "name": "Graph Learning", "slug": "graph-learning" },
+    { "name": "AI Safety", "slug": "ai-safety" },
+    { "name": "Evaluation", "slug": "evaluation" },
+    { "name": "ML Systems", "slug": "ml-systems" },
+    { "name": "Speech", "slug": "speech" },
+    { "name": "Information Retrieval", "slug": "information-retrieval" },
+    { "name": "Time Series", "slug": "time-series" },
+    { "name": "Recommender Systems", "slug": "recommender-systems" },
+    { "name": "Science", "slug": "science" }
+  ]
+}

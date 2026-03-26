@@ -17,6 +17,10 @@ marked.setOptions({
   gfm: true
 })
 
+function tagToSlug(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+}
+
 export default function SkillPage() {
   const { skillId } = useParams()
   const [skill, setSkill] = useState(null)
@@ -89,6 +93,22 @@ export default function SkillPage() {
                 <div className="meta-row">
                   <span className="meta-label">Link</span>
                   <span className="meta-value"><a href={skill.url} target="_blank" rel="noopener noreferrer">{skill.url}</a></span>
+                </div>
+              )}
+              {skill.tags && skill.tags.length > 0 && (
+                <div className="meta-row">
+                  <span className="meta-label">Tags</span>
+                  <div className="meta-tags">
+                    {skill.tags.map(tag => (
+                      <Link
+                        key={tag}
+                        to={`/browse?tag=${encodeURIComponent(tagToSlug(tag))}`}
+                        className="skill-tag"
+                      >
+                        {tag}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
               {skill.keywords && (

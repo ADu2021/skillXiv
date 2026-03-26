@@ -16,7 +16,9 @@ export default function useSkillCount() {
       fetchPromise = fetch('./skills-index.json')
         .then(r => r.json())
         .then(data => {
-          cachedCount = data.length
+          // Support both old format (array) and new format ({ skills, globalTags })
+          const skills = Array.isArray(data) ? data : (data.skills || [])
+          cachedCount = skills.length
           return cachedCount
         })
         .catch(() => null)
