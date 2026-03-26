@@ -209,6 +209,7 @@ def main():
     if global_tags:
         top = ', '.join(t['name'] + ' (' + str(t['count']) + ')' for t in global_tags[:10])
         print(f"Top tags: {top}")
+    print(f"Sources metadata: {len(sources_meta)} sources written")
     print(f"Index size: {os.path.getsize(OUTPUT_INDEX) / 1024:.1f} KB")
     print(f"Sources metadata: {len(sources_meta)} sources written")
 

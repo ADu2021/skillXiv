@@ -489,6 +489,66 @@ a:hover {
   line-height: 1.4;
 }
 
+/* ===== Source Filter ===== */
+.source-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.source-filter-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.source-filter-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 100px;
+  background: var(--white);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.source-chip:hover {
+  border-color: var(--indigo-300);
+  color: var(--indigo-600);
+}
+.source-chip-active {
+  background: var(--indigo-600);
+  border-color: var(--indigo-600);
+  color: var(--white);
+}
+.source-chip-active:hover {
+  background: var(--indigo-700);
+  border-color: var(--indigo-700);
+  color: var(--white);
+}
+.source-chip-count {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+.source-chip-active .source-chip-count {
+  opacity: 0.85;
+}
+
 /* ===== Tag Bar (Browse Page) ===== */
 .tag-bar {
   margin-bottom: 24px;
