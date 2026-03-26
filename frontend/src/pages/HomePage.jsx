@@ -12,12 +12,14 @@ export default function HomePage() {
     fetch('./skills-index.json')
       .then(r => r.json())
       .then(data => {
-        setSkills(data)
+        // Support both old format (array) and new format ({ skills, globalTags })
+        const skillList = Array.isArray(data) ? data : (data.skills || [])
+        setSkills(skillList)
         // Pick 6 featured skills (diverse sample)
         const picks = []
-        const step = Math.floor(data.length / 6)
+        const step = Math.floor(skillList.length / 6)
         for (let i = 0; i < 6; i++) {
-          picks.push(data[i * step + Math.floor(Math.random() * step)])
+          picks.push(skillList[i * step + Math.floor(Math.random() * step)])
         }
         setFeatured(picks)
         setLoading(false)

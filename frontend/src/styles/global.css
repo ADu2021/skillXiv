@@ -489,6 +489,87 @@ a:hover {
   line-height: 1.4;
 }
 
+/* ===== Tag Bar (Browse Page) ===== */
+.tag-bar {
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.tag-bar-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 100px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.tag-pill:hover {
+  border-color: var(--indigo-300);
+  color: var(--indigo-600);
+  background: var(--indigo-50);
+}
+.tag-pill-active {
+  background: var(--indigo-600);
+  border-color: var(--indigo-600);
+  color: var(--white);
+}
+.tag-pill-active:hover {
+  background: var(--indigo-700);
+  border-color: var(--indigo-700);
+  color: var(--white);
+}
+.tag-pill-count {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.6;
+}
+.tag-pill-active .tag-pill-count {
+  opacity: 0.8;
+}
+
+/* ===== Skill Tags (Card & Detail) ===== */
+.skill-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--indigo-50);
+  color: var(--indigo-600);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s;
+  cursor: pointer;
+  border: none;
+}
+.skill-tag:hover {
+  background: var(--indigo-100);
+  color: var(--indigo-700);
+}
+.skill-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
 /* ===== Browse Page ===== */
 .browse {
   padding: 48px 0 80px;

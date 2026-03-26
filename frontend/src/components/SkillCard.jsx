@@ -1,10 +1,19 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function SkillCard({ skill }) {
+  const navigate = useNavigate()
+
   // Truncate description to ~120 chars
   const shortDesc = skill.description && skill.description.length > 140
     ? skill.description.slice(0, 140).replace(/\s+\S*$/, '') + '...'
     : skill.description
+
+  const handleTagClick = (e, tag) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const slug = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    navigate(`/browse?tag=${encodeURIComponent(slug)}`)
+  }
 
   return (
     <Link to={`/skill/${skill.id}`} className="skill-card">
@@ -13,6 +22,19 @@ export default function SkillCard({ skill }) {
       </div>
       <h3 className="skill-card-name">{skill.name}</h3>
       <p className="skill-card-desc">{shortDesc}</p>
+      {skill.tags && skill.tags.length > 0 && (
+        <div className="skill-card-tags">
+          {skill.tags.slice(0, 3).map(tag => (
+            <span
+              key={tag}
+              className="skill-tag"
+              onClick={(e) => handleTagClick(e, tag)}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
       {skill.paperTitle && (
         <div className="skill-card-paper">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
