@@ -8,7 +8,7 @@
     },
     {
       "id": "skillxiv-v0.0.2-claude-opus-4.6",
-      "enabled": false,
+      "enabled": true,
       "label": "SkillXiv v0.0.2 (Claude Opus 4.6)",
       "path": "skills/skillxiv-v0.0.2-claude-opus-4.6"
     },

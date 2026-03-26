@@ -8,6 +8,9 @@ skills/skillxiv-v0.0.1-claude-opus-4.6/
 # Build artifacts
 frontend/dist/
 frontend/node_modules/
+frontend/public/skills-index.json
+frontend/public/skills-data/
+frontend/public/sources-meta.json
 
 # OS files
 .DS_Store
